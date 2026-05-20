@@ -228,6 +228,160 @@ svg {
     margin: 0 auto 24px;
 }
 
+.todo-section {
+    padding-top: 40px;
+}
+
+.todo-card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(84, 112, 255, 0.16);
+    border-radius: 28px;
+    padding: 28px;
+    box-shadow: 0 24px 65px rgba(46, 71, 127, 0.08);
+}
+
+.todo-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.todo-input {
+    width: 100%;
+    border: 1px solid rgba(79, 92, 117, 0.16);
+    border-radius: 16px;
+    padding: 16px 18px;
+    font-size: 1rem;
+    color: #1c2533;
+    outline: none;
+}
+
+.todo-input:focus {
+    border-color: #4e7bff;
+    box-shadow: 0 0 0 4px rgba(78, 123, 255, 0.12);
+}
+
+.todo-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.todo-filter {
+    padding: 11px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(79, 92, 117, 0.11);
+    background: rgba(255, 255, 255, 0.85);
+    color: #4f5c75;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.todo-filter:hover,
+.todo-filter.active {
+    background: #f0f4ff;
+    transform: translateY(-1px);
+    border-color: #4e7bff;
+    color: #33415f;
+}
+
+.todo-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 18px 20px;
+    border-radius: 18px;
+    background: #f7f9ff;
+    border: 1px solid rgba(79, 92, 117, 0.08);
+}
+
+.todo-task {
+    flex: 1;
+    position: relative;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #263148;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.todo-task::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 2px;
+    background: #4e7bff;
+    border-radius: 999px;
+    transform: translateY(-50%);
+    transition: width 0.32s ease;
+}
+
+.todo-task.completed {
+    color: #7f8fa4;
+}
+
+.todo-task.completed::after {
+    width: 100%;
+}
+
+.todo-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.todo-action {
+    display: inline-flex;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    border: 1px solid rgba(79, 92, 117, 0.14);
+    background: #ffffff;
+    color: #4e7bff;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.todo-action:hover,
+.todo-action:focus-visible {
+    transform: translateY(-1px);
+    background: #f0f4ff;
+}
+
+.todo-action-delete {
+    color: #d63d3d;
+    border-color: rgba(214, 61, 61, 0.18);
+}
+
+.todo-hint {
+    margin: 18px 0 0;
+    color: #5f6f94;
+}
+
+.todo-empty {
+    padding: 24px;
+    text-align: center;
+    color: #7f8fa4;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 18px;
+}
+
 .site-footer {
     padding: 32px 0 46px;
     background: rgba(236, 243, 255, 0.8);
@@ -236,7 +390,7 @@ svg {
 .site-footer p {
     margin: 0;
     color: #5f6f94;
-    text-align: center;
+    text-align: left;
 }
 
 @media (max-width: 900px) {
@@ -254,6 +408,10 @@ svg {
     .header-inner {
         padding: 0;
     }
+    .site-versions-container {
+    top: 12px;
+    right: 12px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -268,4 +426,92 @@ svg {
     .button {
         width: 100%;
     }
+    .site-versions-container {
+    flex-direction: row;
+    position: fixed;
+    top: 8px;
+    right: 8px;
+    gap: 4px;
+  }
 }
+
+.site-versions-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.site-versions {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color:#8b6dff
+;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-family: "Forum", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.6s ease;
+  position: relative;
+}
+
+.site-versions:hover {
+  transform: scale(1.1), 0.5s;
+  background-color:#8b6dff
+;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(0px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(3px);
+  }
+}
+
+.site-versions-en {
+  text-decoration: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgb(189, 104, 246);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-family: "Forum", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+.site-versions-en:hover {
+  transform: translateY(10px) scale(1.1);
+  text-decoration: none;
+}
+
+.site-versions-container:hover .site-versions-en {
+  animation: slideUp 0.6s ease forwards;
+  text-decoration: none;
+  pointer-events: auto;
+}
+

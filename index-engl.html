@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Site for asthma prevention of patients.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div class="site-versions-container">
+        <button class="site-versions">En</button>
+        <a href="index.html"><button class="site-versions-en">Ru</button></a>
+    </div>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div>
+                <p class="eyebrow">Asthma under control</p>
+                <h1>Simple help and support in life with bronchial asthma</h1>
+                <p class="lead">Diary, checklists, instructions for the inhaler and peak flowmetry, breathing exercises and
+                    tips for self-help.</p>
+                <div class="hero-buttons">
+                    <a href="#diary" class="button button-primary">Keep a diary</a>
+                    <a href="#breathing" class="button button-secondary">Breathing exercises</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="intro container">
+            <h2>Your personal assistant for respiratory health</h2>
+            <p>Here you will find clear advice, practical templates and daily reminders that will help you better manage asthma and live actively.</p>
+        </section>
+
+        <section class="section container cards-grid">
+            <article class="card">
+                <span class="card-icon">📝</span>
+                <h3>Wellness Diary</h3>
+                <p>Record symptoms, medication intake and breathing levels. This helps identify triggers and improve the treatment plan.</p>
+            </article>
+            <article class="card">
+                <span class="card-icon">✅</span>
+                <h3>Checklists and Templates</h3>
+                <p>Use ready-made checklists to ensure you don't forget important steps: measure peak flow, check symptoms and prepare the inhaler.</p>
+            </article>
+            <article class="card">
+                <span class="card-icon">💨</span>
+                <h3>Inhaler and Peak Flow Meter</h3>
+                <p>Step-by-step instructions for the correct use of the pocket inhaler and peak flow meter for accurate
+                    measurements.</p>
+            </article>
+        </section>
+
+        <section id="checklists" class="section container">
+            <div class="section-content">
+                <h2>Checklists that help</h2>
+                <p>A simple lifestyle with asthma begins with clear actions. Use checklists every day and when
+                    preparing for treatment.</p>
+                <ul class="checklist">
+                    <li>Check the inhaler and spare cartridges.</li>
+                    <li>Write down the frequency of breathing and the level of difficulty.</li>
+                    <li>Measure peak flow in a calm state.</li>
+                    <li>Evaluate factors that may have caused an exacerbation.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="inhaler" class="section container split">
+            <div>
+                <h2>How to use a pocket inhaler</h2>
+                <ol>
+                    <li>Shake the inhaler and remove the cap.</li>
+                    <li>Take a deep breath, then place the mouthpiece in your mouth.</li>
+                    <li>Press and inhale slowly at the same time.</li>
+                    <li>Hold your breath for 5–10 seconds, then exhale.</li>
+                    <li>Rinse the mouthpiece and store the device dry.</li>
+                </ol>
+            </div>
+            <div>
+                <h2>How to use a peak flow meter</h2>
+                <p>Regular measurements help you notice deterioration before significant coughing or breathing difficulty.</p>
+                <ol>
+                    <li>Stand up straight and exhale as deeply as possible.</li>
+                    <li>Strongly exhale into the device, holding it steady.</li>
+                    <li>Write down the result and repeat three times, choosing the best reading.</li>
+                    <li>Compare the reading with your usual value.</li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="breathing" class="section container cards-grid">
+            <article class="card">
+                <span class="card-icon">🌬️</span>
+                <h3>Slow Breathing</h3>
+                <p>Inhale slowly through your nose, hold your breath and exhale gently through your mouth. Repeat 4–6 times.</p>
+            </article>
+            <article class="card">
+                <span class="card-icon">🧘</span>
+                <h3>Box Breathing</h3>
+                <p>Inhale for 4 seconds, hold for 4, exhale for 4, pause for 4. Helps reduce anxiety and restore breathing rhythm.
+                </p>
+            </article>
+            <article class="card">
+                <span class="card-icon">💗</span>
+                <h3>Body Relaxation</h3>
+                <p>Start by relaxing your shoulders and neck, then focus on steady, calm breathing.</p>
+            </article>
+        </section>
+
+        <section id="self-help" class="section container">
+            <div class="section-content">
+                <h2>Self-Help Guidelines for Exacerbations</h2>
+                <p>If an attack or suffocation begins, follow a clear action plan.</p>
+                <ul class="help-list">
+                    <li>Sit up straight, do not lie down.</li>
+                    <li>Use your rescue inhaler according to your plan.</li>
+                    <li>Breathe slowly and calmly, repeating the technique.</li>
+                    <li>If your condition does not improve — seek medical help.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="diary" class="section container todo-section" >
+            <div class="section-content">
+                <h2>Diary</h2>
+                <p>Mark important events: measurements and breathing exercises. Complete tasks and
+                    delete irrelevant ones.</p>
+                <div class="todo-card">
+                    <div class="todo-header">
+                        <input class="todo-input" type="text" placeholder="Add task"
+                            aria-label="Add task">
+                        <button class="button button-primary todo-add-button" type="button">Add</button>
+                    </div>
+                    <div class="todo-filters">
+                        <button class="todo-filter active" data-filter="active">Active</button>
+                        <button class="todo-filter" data-filter="completed">Completed</button>
+                        <button class="todo-filter" data-filter="deleted">Deleted</button>
+                    </div>
+                    <ul class="todo-list" aria-live="polite"></ul>
+                    <p class="todo-hint">Click on a task or the checkbox button to mark it as completed. Click
+                        on the trash can to delete it.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="footer-cta container">
+            <h2>Be Confident in Your Breathing</h2>
+            <p>Keeping a diary and regular check-ups help you live calmly and actively, even with an asthma diagnosis.</p>
+            <a href="#diary" class="button button-primary">Start Now</a>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Website about bronchial asthma prevention, 2026. All rights reserved.</p>
+            <p>The website is created to support people with bronchial asthma. The information is for informational purposes only.</p>
+        </div>
+    </footer>
+
+    <script>
+        const taskInput = document.querySelector('.todo-input');
+        const addButton = document.querySelector('.todo-add-button');
+        const todoList = document.querySelector('.todo-list');
+        const filterButtons = document.querySelectorAll('.todo-filter');
+
+        const STORAGE_KEY = 'asthmaTodoTasks';
+        const DEFAULT_TASKS = [
+        ];
+
+        let tasks = loadTasks();
+        let currentFilter = 'active';
+
+        function saveTasks() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+        }
+
+        function loadTasks() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                const stored = raw ? JSON.parse(raw) : null;
+                if (Array.isArray(stored) && stored.length) {
+                    return stored;
+                }
+            } catch (error) {
+                console.warn('Не удалось загрузить задачи из localStorage', error);
+            }
+            return [...DEFAULT_TASKS];
+        }
+
+        function renderTasks() {
+            todoList.innerHTML = '';
+            const filtered = tasks.filter(task => task.state === currentFilter);
+            if (!filtered.length) {
+                todoList.innerHTML = '<li class="todo-empty">Нет задач по выбранному фильтру</li>';
+                return;
+            }
+            filtered.forEach(task => {
+                const item = document.createElement('li');
+                item.className = 'todo-item';
+                item.dataset.id = task.id;
+                item.dataset.state = task.state;
+
+                const label = document.createElement('span');
+                label.className = 'todo-task' + (task.state === 'completed' ? ' completed' : '');
+                label.textContent = task.text;
+                label.tabIndex = 0;
+                label.addEventListener('click', () => toggleComplete(task.id));
+                label.addEventListener('keypress', e => {
+                    if (e.key === 'Enter') toggleComplete(task.id);
+                });
+
+                const actionGroup = document.createElement('div');
+                actionGroup.className = 'todo-actions';
+
+                const completeButton = document.createElement('button');
+                completeButton.type = 'button';
+                completeButton.className = 'todo-action todo-action-complete';
+                completeButton.innerHTML = task.state === 'completed' ? '✔' : '✓';
+                completeButton.title = task.state === 'completed' ? 'Снять отметку' : 'Завершить задачу';
+                completeButton.addEventListener('click', () => toggleComplete(task.id));
+
+                const deleteButton = document.createElement('button');
+                deleteButton.type = 'button';
+                deleteButton.className = 'todo-action todo-action-delete';
+                deleteButton.innerHTML = '🗑️';
+                deleteButton.title = 'Удалить задачу';
+                deleteButton.addEventListener('click', () => deleteTask(task.id));
+
+                actionGroup.append(completeButton, deleteButton);
+                item.append(label, actionGroup);
+                todoList.append(item);
+            });
+        }
+
+        function toggleComplete(id) {
+            const task = tasks.find(item => item.id === id);
+            if (!task || task.state === 'deleted') return;
+            task.state = task.state === 'completed' ? 'active' : 'completed';
+            saveTasks();
+            renderTasks();
+        }
+
+        function deleteTask(id) {
+            const task = tasks.find(item => item.id === id);
+            if (!task) return;
+            task.state = 'deleted';
+            saveTasks();
+            renderTasks();
+        }
+
+        function addTask() {
+            const text = taskInput.value.trim();
+            if (!text) return;
+            tasks.push({ id: Date.now(), text, state: 'active' });
+            saveTasks();
+            taskInput.value = '';
+            currentFilter = 'active';
+            updateFilterButtons();
+            renderTasks();
+            taskInput.focus();
+        }
+
+        function updateFilterButtons() {
+            filterButtons.forEach(button => {
+                button.classList.toggle('active', button.dataset.filter === currentFilter);
+            });
+        }
+
+        addButton.addEventListener('click', addTask);
+        taskInput.addEventListener('keydown', e => {
+            if (e.key === 'Enter') addTask();
+        });
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                currentFilter = button.dataset.filter;
+                updateFilterButtons();
+                renderTasks();
+            });
+        });
+
+        renderTasks();
+    </script>
+</body>
+
+</html>

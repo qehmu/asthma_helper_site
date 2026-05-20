@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Сайт для профилактики пациентов с астмой.">
+    <meta name="description" content="Сайт для профилактики пациентов с астмой.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,6 +12,10 @@
 </head>
 
 <body>
+    <div class="site-versions-container">
+        <button class="site-versions">Ru</button>
+        <a href="index-engl.html"><button class="site-versions-en">En</button></a>
+    </div>
     <header class="site-header">
         <div class="container header-inner">
             <div>
@@ -35,7 +38,7 @@
                 управлять астмой и жить активно.</p>
         </section>
 
-        <section id="diary" class="section container cards-grid">
+        <section class="section container cards-grid">
             <article class="card">
                 <span class="card-icon">📝</span>
                 <h3>Дневник самочувствия</h3>
@@ -125,6 +128,29 @@
             </div>
         </section>
 
+        <section id="diary" class="section container todo-section" >
+            <div class="section-content">
+                <h2>Дневник</h2>
+                <p>Отмечайте важные дела: измерения и дыхательные упражнения. Выполняйте задачи и
+                    удаляйте неактуальные.</p>
+                <div class="todo-card">
+                    <div class="todo-header">
+                        <input class="todo-input" type="text" placeholder="Добавить задачу"
+                            aria-label="Добавить задачу">
+                        <button class="button button-primary todo-add-button" type="button">Добавить</button>
+                    </div>
+                    <div class="todo-filters">
+                        <button class="todo-filter active" data-filter="active">Активные</button>
+                        <button class="todo-filter" data-filter="completed">Выполненные</button>
+                        <button class="todo-filter" data-filter="deleted">Удаленные</button>
+                    </div>
+                    <ul class="todo-list" aria-live="polite"></ul>
+                    <p class="todo-hint">Нажмите на задачу или на кнопку галочки, чтобы отметить ее завершенной. Нажмите
+                        на корзинку, чтобы удалить.</p>
+                </div>
+            </div>
+        </section>
+
         <section class="footer-cta container">
             <h2>Будьте уверены в своем дыхании</h2>
             <p>Ведение дневника и регулярные проверки помогают жить спокойно и активно, даже с диагнозом астмы.</p>
@@ -134,9 +160,135 @@
 
     <footer class="site-footer">
         <div class="container">
-            <p>2026 Сайт о бронхиальной астме. Все права защищены.</p>
-            <p>Сайт создан для поддержки людей с бронхиальной астмой. Информация носит ознакомительный характер.</p></div>
+            <p>Сайт о профилактике бронхиальной астмы, 2026. Все права защищены.</p>
+            <p>Сайт создан для поддержки людей с бронхиальной астмой. Информация носит ознакомительный характер.</p>
+        </div>
     </footer>
+
+    <script>
+        const taskInput = document.querySelector('.todo-input');
+        const addButton = document.querySelector('.todo-add-button');
+        const todoList = document.querySelector('.todo-list');
+        const filterButtons = document.querySelectorAll('.todo-filter');
+
+        const STORAGE_KEY = 'asthmaTodoTasks';
+        const DEFAULT_TASKS = [
+        ];
+
+        let tasks = loadTasks();
+        let currentFilter = 'active';
+
+        function saveTasks() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+        }
+
+        function loadTasks() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                const stored = raw ? JSON.parse(raw) : null;
+                if (Array.isArray(stored) && stored.length) {
+                    return stored;
+                }
+            } catch (error) {
+                console.warn('Не удалось загрузить задачи из localStorage', error);
+            }
+            return [...DEFAULT_TASKS];
+        }
+
+        function renderTasks() {
+            todoList.innerHTML = '';
+            const filtered = tasks.filter(task => task.state === currentFilter);
+            if (!filtered.length) {
+                todoList.innerHTML = '<li class="todo-empty">Нет задач по выбранному фильтру</li>';
+                return;
+            }
+            filtered.forEach(task => {
+                const item = document.createElement('li');
+                item.className = 'todo-item';
+                item.dataset.id = task.id;
+                item.dataset.state = task.state;
+
+                const label = document.createElement('span');
+                label.className = 'todo-task' + (task.state === 'completed' ? ' completed' : '');
+                label.textContent = task.text;
+                label.tabIndex = 0;
+                label.addEventListener('click', () => toggleComplete(task.id));
+                label.addEventListener('keypress', e => {
+                    if (e.key === 'Enter') toggleComplete(task.id);
+                });
+
+                const actionGroup = document.createElement('div');
+                actionGroup.className = 'todo-actions';
+
+                const completeButton = document.createElement('button');
+                completeButton.type = 'button';
+                completeButton.className = 'todo-action todo-action-complete';
+                completeButton.innerHTML = task.state === 'completed' ? '✔' : '✓';
+                completeButton.title = task.state === 'completed' ? 'Снять отметку' : 'Завершить задачу';
+                completeButton.addEventListener('click', () => toggleComplete(task.id));
+
+                const deleteButton = document.createElement('button');
+                deleteButton.type = 'button';
+                deleteButton.className = 'todo-action todo-action-delete';
+                deleteButton.innerHTML = '🗑️';
+                deleteButton.title = 'Удалить задачу';
+                deleteButton.addEventListener('click', () => deleteTask(task.id));
+
+                actionGroup.append(completeButton, deleteButton);
+                item.append(label, actionGroup);
+                todoList.append(item);
+            });
+        }
+
+        function toggleComplete(id) {
+            const task = tasks.find(item => item.id === id);
+            if (!task || task.state === 'deleted') return;
+            task.state = task.state === 'completed' ? 'active' : 'completed';
+            saveTasks();
+            renderTasks();
+        }
+
+        function deleteTask(id) {
+            const task = tasks.find(item => item.id === id);
+            if (!task) return;
+            task.state = 'deleted';
+            saveTasks();
+            renderTasks();
+        }
+
+        function addTask() {
+            const text = taskInput.value.trim();
+            if (!text) return;
+            tasks.push({ id: Date.now(), text, state: 'active' });
+            saveTasks();
+            taskInput.value = '';
+            currentFilter = 'active';
+            updateFilterButtons();
+            renderTasks();
+            taskInput.focus();
+        }
+
+        function updateFilterButtons() {
+            filterButtons.forEach(button => {
+                button.classList.toggle('active', button.dataset.filter === currentFilter);
+            });
+        }
+
+        addButton.addEventListener('click', addTask);
+        taskInput.addEventListener('keydown', e => {
+            if (e.key === 'Enter') addTask();
+        });
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                currentFilter = button.dataset.filter;
+                updateFilterButtons();
+                renderTasks();
+            });
+        });
+
+        renderTasks();
+    </script>
 </body>
 
 </html>
